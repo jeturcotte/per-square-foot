@@ -4,10 +4,14 @@ library(rgdal)
 # manipulate the per-square-foot state data from zillow
 # http://www.zillow.com/research/data/
 psf <- read.csv("data/psf_by_state.csv")
-remove_these <- c('RegionName','SizeRank')
-#n$Year <- as.factor(format(as.Date( paste(n$Year,'01'), 'X%Y.%m %d' ), '%Y'))
-psf <- psf[,!(names(psf) %in% remove_these)]
+keep_these <- c('RegionID','X1996.04','X1997.04','X1998.04','X1999.04','X2000.04','X2001.04',
+                'X2002.04','X2003.04','X2004.04','X2005.04','X2006.04','X2007.04','X2008.04',
+                'X2009.04','X2010.04','X2011.04','X2012.04','X2013.04','X2014.04','X2015.04',
+                'X2016.04')
+psf <- psf[,keep_these]
 psf <- rename(psf, GEOID=RegionID)
+names(psf) <- gsub("X","", names(psf))
+names(psf) <- gsub("\\.\\d\\d$","", names(psf))
 
 # prepare the state data for joining
 # https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html
