@@ -6,22 +6,22 @@ pal <- colorNumeric( palette="YlGnBu", domain=c(40,500) )
 
 shinyServer( function( input, output, session ) {
 
-     output$mymap <- renderLeaflet({
+     results <- reactive({
+          psfdata[,paste( 'PSF', input$selected_year ,sep="_" )]
+     })
+     
+     output$psfmap <- renderLeaflet({
           
           leaflet(psfdata) %>%
-          addPolygons( 
-               stroke=T,
-               color="black",
-               weight=0.2,
-               fillOpacity=0.75, 
-               smoothFactor=0.2, 
-               fillColor=~pal(1996)
-          ) %>%
           fitBounds(
                -120.848974,
                24.396308,
                -60.885444,
                49.384358
+          ) %>%
+          addProviderTiles( 
+               "Esri.WorldTerrain",
+               options = providerTileOptions( noWrap=T )
           ) %>%
           addLegend(
                pal=pal,
@@ -32,5 +32,27 @@ shinyServer( function( input, output, session ) {
           )
           
      })
+
+     discussState <- function(state, lat, lon) {
+          print(paste(state,lat,lon))
+     }
+     
+     observe({
           
+          event <- input$psfmap_shape_click
+          showcol <- paste( 'PSF', input$selected_year ,sep="_" )
+          newmap <- leafletProxy( "psfmap", data=psfdata[,showcol] )
+          newmap %>% clearShapes()
+          newmap %>% addPolygons(
+               stroke=T,
+               color="black",
+               weight=0.2,
+               fillOpacity=0.75, 
+               smoothFactor=0.1,
+               fillColor=~pal(psfdata@data[showcol]),
+               popup=discussState(event$id, event$lat, event$lng)
+          )
+          
+     })
+  
 })

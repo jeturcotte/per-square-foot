@@ -10,7 +10,7 @@ keep_these <- c('RegionID','X1996.04','X1997.04','X1998.04','X1999.04','X2000.04
                 'X2016.04')
 psf <- psf[,keep_these]
 psf <- rename(psf, GEOID=RegionID)
-names(psf) <- gsub("X","", names(psf))
+names(psf) <- gsub("X","PSF_", names(psf))
 names(psf) <- gsub("\\.\\d\\d$","", names(psf))
 
 # prepare the state data for joining
