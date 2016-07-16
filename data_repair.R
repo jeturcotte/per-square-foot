@@ -14,3 +14,5 @@ psf <- rename(psf, GEOID=RegionID)
 states <- readOGR("shp/cb_2015_us_state_20m.shp", layer="cb_2015_us_state_20m", verbose=F)
 states$GEOID <- as.numeric(levels(states$GEOID))[states$GEOID]
 states@data <- left_join(states@data, psf)
+
+writeOGR(states, "shp/", "states_per_square_foot", driver="ESRI Shapefile")

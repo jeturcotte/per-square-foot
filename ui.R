@@ -3,42 +3,16 @@ library(leaflet)
 library(RColorBrewer)
 
 shinyUI(
+     
      bootstrapPage(
-          tags$style(
-               type="text/css",
-               "html, body {width:100%;height:100%}"
-          ),
-          leafletOutput(
-               "map",
-               width="100%",
-               height="100%"
-          ),
+          
+          tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
+          leafletOutput("mymap"),
           absolutePanel(
-               top=10,
-               right=10,
-               sliderInput(
-                    "range",
-                    "Magnitudes",
-                    min(quakes$mag),
-                    max(quakes$mag),
-                    value=range(quakes$mag),
-                    step=0.1
-               ),
-               selectInput(
-                    "color",
-                    "Color Scheme",
-                    rownames(
-                         subset(
-                              brewer.pal.info,
-                              category %in% c("seq","div")
-                         )
-                    )
-               ),
-               checkboxInput(
-                    "legend",
-                    "Show Legend",
-                    TRUE
-               )
+               top = 10,
+               right = 10
           )
+          
      )
+
 )

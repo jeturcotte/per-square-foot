@@ -1,57 +1,30 @@
 library(shiny)
 library(leaflet)
 
-shinyServer(function(input, output, session) {
+psfdata <- readOGR( "shp/states_per_square_foot.shp", layer="states_per_square_foot", verbose=F )
 
-     filteredData <- reactive({
-          quakes[quakes$mag >= input$range[1] & quakes$mag <= input$range[2],]
-     })
-     
-     colorpal <- reactive({
-          colorNumeric(input$colors, quakes$mag)
-     })
-     
-     output$map <- renderLeaflet({
-          leaflet(quakes) %>% 
-               addTiles() %>%
-               fitBounds(
-                    ~min(long),
-                    ~min(lat),
-                    ~max(long),
-                    ~max(lat)
-               )
-     })
-     
-     observe({
-          pal <- colorpal()
-          leafletProxy(
-               "map",
-               data=filteredData()
+shinyServer( function( input, output, session ) {
+
+     output$mymap <- renderLeaflet({
+          
+          leaflet(psfdata) %>%
+          addProviderTiles( 
+               "CartoDB.Positron",
+               options = providerTileOptions( noWrap=T )
           ) %>%
-          clearShapes() %>%
-          addCircles(
-               radius=~10^mag/10,
-               weight=1,
-               color="#777777",
-               fillColor=~pal(mag),
-               fillOpacity=0.7,
-               popup=~paste(mag)
+          addPolygons( 
+               stroke=F, 
+               fillOpacity=0.75, 
+               smoothFactor=0.2, 
+               color=~colorQuantile("Blues", psfdata$X2015_11)(X2015_11)
+          ) %>%
+          fitBounds(
+               -124.848974,
+               24.396308,
+               -66.885444,
+               49.384358
           )
+          
      })
-
-     observe({
-          proxy <- leafletProxy(
-               "map",
-               data=quakes
-          )
-          proxy %>% clearControls()
-          if (input$legend){
-               pal <- colorpal()
-               proxy %>% addLegend(
-                    position="bottomright",
-                    pal=pal,
-                    values=~mag
-               )
-          }
-     })
+          
 })
