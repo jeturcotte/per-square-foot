@@ -1,12 +1,16 @@
 library(dplyr)
+library(rgdal)
 
-psf <- read.csv("data/psf_by_county.csv")
+# manipulate the per-square-foot state data from zillow
+# http://www.zillow.com/research/data/
+psf <- read.csv("data/psf_by_state.csv")
+remove_these <- c('RegionName','SizeRank')
+#n$Year <- as.factor(format(as.Date( paste(n$Year,'01'), 'X%Y.%m %d' ), '%Y'))
+psf <- psf[,!(names(psf) %in% remove_these)]
+psf <- rename(psf, GEOID=RegionID)
 
-do_not_melt <- c('RegionID','RegionName','State','Metro','StateCodeFIPS','MunicipalCodeFIPS','SizeRank')
-keep_these <- c('FIPS','Year','MeanPrice') 
-
-n <- melt(psf, id.vars=do_not_melt, variable.name="Year", value.name="MeanPrice")
-n <- subset(n, grepl(".01$", Year))
-n$Year <- as.factor(format(as.Date( paste(n$Year,'01'), 'X%Y.%m %d' ), '%Y'))
-n$FIPS <- as.factor(n$StateCodeFIPS * 1000 + n$MunicipalCodeFIPS)
-n <- n[,keep_these]
+# prepare the state data for joining
+# https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html
+states <- readOGR("shp/cb_2015_us_state_20m.shp", layer="cb_2015_us_state_20m", verbose=F)
+states$GEOID <- as.numeric(levels(states$GEOID))[states$GEOID]
+states@data <- left_join(states@data, psf)
