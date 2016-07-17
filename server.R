@@ -14,9 +14,9 @@ shinyServer( function( input, output, session ) {
           
           leaflet(psfdata) %>%
           fitBounds(
-               -120.848974,
+               -118.848974,
                24.396308,
-               -60.885444,
+               -58.885444,
                49.384358
           ) %>%
           addProviderTiles( 
@@ -33,13 +33,8 @@ shinyServer( function( input, output, session ) {
           
      })
 
-     discussState <- function(state, lat, lon) {
-          print(paste(state,lat,lon))
-     }
-     
      observe({
           
-          event <- input$psfmap_shape_click
           showcol <- paste( 'PSF', input$selected_year ,sep="_" )
           newmap <- leafletProxy( "psfmap", data=psfdata[,showcol] )
           newmap %>% clearShapes()
@@ -50,9 +45,17 @@ shinyServer( function( input, output, session ) {
                fillOpacity=0.75, 
                smoothFactor=0.1,
                fillColor=~pal(psfdata@data[showcol]),
-               popup=discussState(event$id, event$lat, event$lng)
+               popup=paste(
+                    "In ",
+                    psfdata@data$NAME,
+                    ", the mean house costs<BR>about $",
+                    as.character(psfdata@data[[showcol]]),
+                    " per square foot in ",
+                    input$selected_year,
+                    sep=""
+               )
           )
-          
+                    
      })
   
 })

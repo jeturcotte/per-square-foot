@@ -1,0 +1,24 @@
+.container-fluid {
+  width: 900px;
+  height: 100%;
+  margin: 0px auto 0px 30px;
+  padding: 0px;
+  background-color: #DDD;
+  border-left: #AAA 1px dotted;
+  border-right: #AAA 1px dotted;
+}
+
+.col-sm-8 {
+  width: 100%;
+}
+
+#psfmap {
+  margin: 0px;
+  border-top: #AAA 1px dotted;
+  border-bottom: #AAA 2px dotted;
+}
+
+body {
+  background-color: #EEE;
+  margin: 0px;
+}
