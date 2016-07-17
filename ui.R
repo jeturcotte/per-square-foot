@@ -45,6 +45,10 @@ shinyUI(
                  stage.  Simply drag the sliding bar through the years and forgive 
                  the moment's refresh of the map to see the differences not only 
                  between the states, but within the states over time as well."),
+               p("Click on any state to see the precise mean price per square foot."),
+               p("By default, the dollar figures are being displayed in 2016 dollars;
+                 i.e., adjusted for inflation.  You can adjust that above by selecting
+                 for whether inflation is on or off."),
                h1("Attributions"),
                tags$ul(
                     tags$li(
@@ -65,8 +69,17 @@ shinyUI(
                          tags$span(" - Bureau of Labor and Statistics, for determining the value
                                    of money in the past.")
                     )
-               )
-               
+               ),
+               h1("Methodology"),
+               p("The data was assembled from Zillow.com by_state data, selecting 
+                 only for the April figure for each year (given that no later was 
+                 available for the 2016 data at the time of downloading.)   The 
+                 RegionID was converted GEOID to match for the spatial .shp file 
+                 provided by the U.S. Census Bureau to represent those shapes, 
+                 albeit at the minimum resolution (1:20,000,000) to minimize load 
+                 times, against which the Zillow data was subsequently joined.  
+                 Yearly inflation adjustments were then loaded and kept ready for 
+                 the adjustment of Zillow data, should the toggle for inflation be on.")
           )
      )
 
