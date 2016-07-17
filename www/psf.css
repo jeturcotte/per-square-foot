@@ -8,6 +8,11 @@
   border-right: #AAA 1px dotted;
 }
 
+#inflated {
+  margin-bottom: -10px;
+  margin-left: 10px;
+}
+
 .col-sm-8 {
   width: 100%;
 }
