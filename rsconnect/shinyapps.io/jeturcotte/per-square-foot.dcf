@@ -2,6 +2,6 @@ name: per-square-foot
 account: jeturcotte
 server: shinyapps.io
 appId: 114873
-bundleId: 507187
+bundleId: 507370
 url: https://jeturcotte.shinyapps.io/per-square-foot/
-when: 1468766433.11503
+when: 1468783274.04383
