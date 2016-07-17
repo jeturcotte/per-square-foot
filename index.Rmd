@@ -1,7 +1,7 @@
 ---
-title       : 
-subtitle    : 
-author      : 
+title       : Cost of Housing by the Square Foot
+subtitle    : An exploration of the cost of housing over time
+author      : J.E. Turcotte
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -11,16 +11,36 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Read-And-Delete
+## Looking for a Better Home
 
-1. Edit YAML front matter
-2. Write using R Markdown
-3. Use an empty line followed by three dashes to separate slides!
+* Currently I live on the outskirts of the Washington, D.C, area.
+* Cannot afford to live any closer, and even here I'm paying about $215 per square foot.
+* I noticed that out east a bit, giant mansions were costling half as much, per square foot, as tiny apartments and studios even on the edge of the city, and far less than those actually in the city.
 
---- .class #id 
+---
 
-## Slide 2
+## An Unachievable Trend?
+
+```{r simple plot, fig.height=6, fig.align='center', message=F, eval=T, echo=F }
+require(ggplot2)
+qplot(wt, mpg, data=mtcars)
+```
+
+---
+
+## A Look at the Cost of Housing
 
 
+
+---
+
+## Future Upgrades
+
+* This is the first draft of the application
+* Would be nice to add similar breakdown by county, by zipcode, metro area, et cetera.
+* Would be nice to offer a trend plot for the entire nation as a time series, and extrapolate into the future with predictions
+* Would be nice to offer a trend plot, per state or other regionality, perhaps even in each popup, of the same information
+* Would be nice to map out the mean price per square foot as a function of local cost of living and wages (affordability.)
+* Would be nice to make similar chart based on rent instead of purchase cost.
 
 
