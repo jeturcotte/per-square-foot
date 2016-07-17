@@ -59,6 +59,11 @@ shinyUI(
                                    They also have data by zipcode, county, metro area,
                                    et cetera, though all are slightly incomplete as some
                                    states did not provide needed information.")
+                    ),
+                    tags$li(
+                         tags$a("http://www.bls.gov/data/inflation_calculator.htm"),
+                         tags$span(" - Bureau of Labor and Statistics, for determining the value
+                                   of money in the past.")
                     )
                )
                
