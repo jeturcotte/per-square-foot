@@ -1,15 +1,15 @@
----
+--- 
 title       : Cost of Housing by the Square Foot
 subtitle    : An exploration of the cost of housing over time
 author      : J.E. Turcotte
 job         : 
-framework   : html5slides   
+framework   : io2012   
 highlighter : highlight.js 
 hitheme     : tomorrow
 widgets     : []           
 mode        : selfcontained 
 knit        : slidify::knit2slides
----
+--- 
 
 ## Looking for a Better Home
 
