@@ -3,40 +3,61 @@ title       : Cost of Housing by the Square Foot
 subtitle    : An exploration of the cost of housing over time
 author      : J.E. Turcotte
 job         : 
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
-mode        : selfcontained # {standalone, draft}
+framework   : html5slides   
+highlighter : highlight.js 
+hitheme     : tomorrow
+widgets     : []           
+mode        : selfcontained 
 knit        : slidify::knit2slides
 ---
 
 ## Looking for a Better Home
 
-* Currently I live on the outskirts of the Washington, D.C, area.
-* Cannot afford to live any closer, and even here I'm paying about $215 per square foot.
-* I noticed that out east a bit, giant mansions were costling half as much, per square foot, as tiny apartments and studios even on the edge of the city, and far less than those actually in the city.
+* Currently I live on the outskirts of the Washington, D.C, area in Northern Virginia.  'Outside the Beltway,' if only just.
+* I have, in the past, lived a great deal of time in Maine... a place I'd like to go back to before I get too old to appreciate it.
+* I've recently be introduced to an area of Maryland that is quite tempting and still within a cehvy volt's battery capacity of work.
+* Cannot afford to live any closer to work, and even here I'm paying about $215 per square foot, which makes living here, even on a 'decent' salary anywhere else a tad challenging.
+* And yet, if I look half a mile north to the other side of the beltway, that price could double easily.
+
+So, to satisfy my own curiosity (as well as satisfy a learning assignment), I took this opportunity to explore the data.
 
 ---
 
 ## An Unachievable Trend?
 
-```{r simple plot, fig.height=6, fig.align='center', message=F, eval=T, echo=F }
+Interestingly enough, it looks as though D.C. more than recovered from the housing/banking crisis, while my native state *seems* to have fallen into a second pitfall, probably due to globalism.
+
+```{r simple plot, fig.height=3.5, fig.width=11, fig.align='center', message=F, eval=T, echo=F, warning=F }
 require(ggplot2)
-qplot(wt, mpg, data=mtcars)
+require(reshape2)
+psf <- read.csv("data/psf_by_state.csv")
+keep_these <- c('State','Date','MeanPrice')
+do_not_melt <- c('RegionID','RegionName','SizeRank')
+psf <- melt(psf, id.vars=do_not_melt, variable.name="Date", value.name="MeanPrice")
+psf$Date <- as.Date( paste(psf$Date,'01'), 'X%Y.%m %d' )
+colnames(psf)[2] <- 'State'
+psf <- psf[,keep_these]
+my_states <- subset(psf, State %in% c("District of Columbia","Virginia","Maine","Maryland"))
+psf_plot <- ggplot(my_states, aes(Date, MeanPrice))
+psf_plot <- psf_plot + geom_line(aes(color=State))
+psf_plot <- psf_plot + xlab("") + ylab("Mean Price per Sq.Ft in Dollars")
+psf_plot
 ```
+
+Sadly, even as the jobs are being pulled into the cities, this one, at least, appears to be accelerating away from affordability.  The ratio in difference between the four in 2000 is significantly less acute than in 2015.
 
 ---
 
-## A Look at the Cost of Housing
+## A Quick Look across the Lower 48
 
+![A Screenshot of Per-Square-Foot](assets/img/screenshot.png)
 
+Thus, I introduce the first rudimentary version of the [Per Square Foot](https://jeturcotte.shinyapps.io/per-square-foot/) application which, for now, shows the mean square foot price for housing across most of the lower 48 states, both in the dollars of the time, and adjusted to the value of the 2016 dollar.
 
 ---
 
 ## Future Upgrades
 
-* This is the first draft of the application
 * Would be nice to add similar breakdown by county, by zipcode, metro area, et cetera.
 * Would be nice to offer a trend plot for the entire nation as a time series, and extrapolate into the future with predictions
 * Would be nice to offer a trend plot, per state or other regionality, perhaps even in each popup, of the same information

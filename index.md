@@ -3,208 +3,46 @@ title       : Cost of Housing by the Square Foot
 subtitle    : An exploration of the cost of housing over time
 author      : J.E. Turcotte
 job         : 
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
-mode        : selfcontained # {standalone, draft}
+framework   : html5slides   
+highlighter : highlight.js 
+hitheme     : tomorrow
+widgets     : []           
+mode        : selfcontained 
 knit        : slidify::knit2slides
 ---
 
 ## Looking for a Better Home
 
-* Currently I live on the outskirts of the Washington, D.C, area.
-* Cannot afford to live any closer, and even here I'm paying about $215 per square foot.
-* I noticed that out east a bit, giant mansions were costling half as much, per square foot, as tiny apartments and studios even on the edge of the city, and far less than those actually in the city.
+* Currently I live on the outskirts of the Washington, D.C, area in Northern Virginia.  'Outside the Beltway,' if only just.
+* I have, in the past, lived a great deal of time in Maine... a place I'd like to go back to before I get too old to appreciate it.
+* I've recently be introduced to an area of Maryland that is quite tempting and still within a cehvy volt's battery capacity of work.
+* Cannot afford to live any closer to work, and even here I'm paying about $215 per square foot, which makes living here, even on a 'decent' salary anywhere else a tad challenging.
+* And yet, if I look half a mile north to the other side of the beltway, that price could double easily.
+
+So, to satisfy my own curiosity (as well as satisfy a learning assignment), I took this opportunity to explore the data.
 
 ---
 
 ## An Unachievable Trend?
 
+Interestingly enough, it looks as though D.C. more than recovered from the housing/banking crisis, while my native state *seems* to have fallen into a second pitfall, probably due to globalism.
 
-<!-- MotionChart generated in R 3.3.0 by googleVis 0.5.10 package -->
-<!-- Sun Jul 17 17:20:28 2016 -->
+<img src="assets/fig/simple plot-1.png" title="plot of chunk simple plot" alt="plot of chunk simple plot" style="display: block; margin: auto;" />
 
-
-<!-- jsHeader -->
-<script type="text/javascript">
- 
-// jsData 
-function gvisDataMotionChartID145641a17867 () {
-var data = new google.visualization.DataTable();
-var datajson =
-[
- [
- "Apples",
-2008,
-"West",
-98,
-78,
-20,
-"2008-12-31" 
-],
-[
- "Apples",
-2009,
-"West",
-111,
-79,
-32,
-"2009-12-31" 
-],
-[
- "Apples",
-2010,
-"West",
-89,
-76,
-13,
-"2010-12-31" 
-],
-[
- "Oranges",
-2008,
-"East",
-96,
-81,
-15,
-"2008-12-31" 
-],
-[
- "Bananas",
-2008,
-"East",
-85,
-76,
-9,
-"2008-12-31" 
-],
-[
- "Oranges",
-2009,
-"East",
-93,
-80,
-13,
-"2009-12-31" 
-],
-[
- "Bananas",
-2009,
-"East",
-94,
-78,
-16,
-"2009-12-31" 
-],
-[
- "Oranges",
-2010,
-"East",
-98,
-91,
-7,
-"2010-12-31" 
-],
-[
- "Bananas",
-2010,
-"East",
-81,
-71,
-10,
-"2010-12-31" 
-] 
-];
-data.addColumn('string','Fruit');
-data.addColumn('number','Year');
-data.addColumn('string','Location');
-data.addColumn('number','Sales');
-data.addColumn('number','Expenses');
-data.addColumn('number','Profit');
-data.addColumn('string','Date');
-data.addRows(datajson);
-return(data);
-}
- 
-// jsDrawChart
-function drawChartMotionChartID145641a17867() {
-var data = gvisDataMotionChartID145641a17867();
-var options = {};
-options["width"] =    600;
-options["height"] =    500;
-options["state"] = "";
-
-    var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartID145641a17867')
-    );
-    chart.draw(data,options);
-    
-
-}
-  
- 
-// jsDisplayChart
-(function() {
-var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-var chartid = "motionchart";
-  
-// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
-var i, newPackage = true;
-for (i = 0; newPackage && i < pkgs.length; i++) {
-if (pkgs[i] === chartid)
-newPackage = false;
-}
-if (newPackage)
-  pkgs.push(chartid);
-  
-// Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartID145641a17867);
-})();
-function displayChartMotionChartID145641a17867() {
-  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-  window.clearTimeout(window.__gvisLoad);
-  // The timeout is set to 100 because otherwise the container div we are
-  // targeting might not be part of the document yet
-  window.__gvisLoad = setTimeout(function() {
-  var pkgCount = pkgs.length;
-  google.load("visualization", "1", { packages:pkgs, callback: function() {
-  if (pkgCount != pkgs.length) {
-  // Race condition where another setTimeout call snuck in after us; if
-  // that call added a package, we must not shift its callback
-  return;
-}
-while (callbacks.length > 0)
-callbacks.shift()();
-} });
-}, 100);
-}
- 
-// jsFooter
-</script>
- 
-<!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID145641a17867"></script>
- 
-<!-- divChart -->
-  
-<div id="MotionChartID145641a17867" 
-  style="width: 600; height: 500;">
-</div>
+Sadly, even as the jobs are being pulled into the cities, this one, at least, appears to be accelerating away from affordability.  The ratio in difference between the four in 2000 is significantly less acute than in 2015.
 
 ---
 
-## A Look at the Cost of Housing
+## A Quick Look across the Lower 48
 
+![A Screenshot of Per-Square-Foot](assets/img/screenshot.png)
 
+Thus, I introduce the first rudimentary version of the [Per Square Foot](https://jeturcotte.shinyapps.io/per-square-foot/) application which, for now, shows the mean square foot price for housing across most of the lower 48 states, both in the dollars of the time, and adjusted to the value of the 2016 dollar.
 
 ---
 
 ## Future Upgrades
 
-* This is the first draft of the application
 * Would be nice to add similar breakdown by county, by zipcode, metro area, et cetera.
 * Would be nice to offer a trend plot for the entire nation as a time series, and extrapolate into the future with predictions
 * Would be nice to offer a trend plot, per state or other regionality, perhaps even in each popup, of the same information

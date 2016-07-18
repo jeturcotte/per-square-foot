@@ -3,3 +3,5 @@ slidify
 slidifyLibraries
 ggplot2
 googleVis
+dplyr
+reshape2
