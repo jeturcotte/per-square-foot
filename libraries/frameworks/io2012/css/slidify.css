@@ -356,10 +356,6 @@ pre code {
   background-image:url(https://jeturcotte.github.io/per-square-foot/assets/img/front.png);
 }
 
-.title-slide hgroup > h1{
- font-family: 'Oswald', 'Helvetica', sanserif; 
-}
-
 .title-slide hgroup > h1, 
 .title-slide hgroup > h2 {
   color: #000 ;  /* ; #EF5150*/
