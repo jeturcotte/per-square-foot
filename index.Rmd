@@ -15,7 +15,7 @@ knit        : slidify::knit2slides
 
 * Currently I live on the outskirts of the Washington, D.C, area in Northern Virginia.  'Outside the Beltway,' if only just.
 * I have, in the past, lived a great deal of time in Maine... a place I'd like to go back to before I get too old to appreciate it.
-* I've recently be introduced to an area of Maryland that is quite tempting and still within a cehvy volt's battery capacity of work.
+* I've recently been introduced to an area of Maryland that is quite tempting and still within a chevy volt's battery capacity of work.
 * Cannot afford to live any closer to work, and even here I'm paying about $215 per square foot, which makes living here, even on a 'decent' salary anywhere else a tad challenging.
 * And yet, if I look half a mile north to the other side of the beltway, that price could double easily.
 
